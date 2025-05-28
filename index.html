@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihon Learning</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <img
+          src="logo-japanese.png"
+          alt="Japanese Learning Logo"
+          class="app-logo"
+        />
+        Japanese Alphabet Learning App
+      </h1>
+
+      <div class="app-layout">
+        <!-- Selection Panel -->
+        <div class="selection-panel">
+          <h2>Select Characters to Practice</h2>
+
+          <div class="alphabet-selector">
+            <div class="alphabet-tabs">
+              <button class="tab-button active" data-alphabet="hiragana">
+                Hiragana
+              </button>
+              <button class="tab-button" data-alphabet="katakana">
+                Katakana
+              </button>
+            </div>
+
+            <div class="control-buttons">
+              <button class="btn btn-secondary" id="selectAll">
+                Select All
+              </button>
+              <button class="btn btn-secondary" id="clearAll">Clear All</button>
+              <button class="btn btn-secondary" id="selectBasic">
+                Basic Only
+              </button>
+            </div>
+
+            <div class="character-grid" id="characterGrid">
+              <!-- Characters will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Panel -->
+        <div class="practice-panel">
+          <h2>Practice Session</h2>
+
+          <div class="stats" id="stats">
+            <div class="stats-item">
+              Selected: <span id="selectedCount">0</span>
+            </div>
+            <div class="stats-item">
+              Practiced: <span id="practicedCount">0</span>
+            </div>
+          </div>
+
+          <div class="alphabet-selector" style="margin-bottom: 1rem">
+            <h3 style="margin-bottom: 0.5rem; font-size: 1rem">
+              Practice Mode
+            </h3>
+            <div class="alphabet-tabs">
+              <button class="tab-button active" data-mode="character">
+                Show Character
+              </button>
+              <button class="tab-button" data-mode="romaji">Show Romaji</button>
+              <button class="tab-button" data-mode="random">Random</button>
+            </div>
+          </div>
+
+          <div class="control-buttons">
+            <button class="btn btn-primary" id="nextCard">Next Card</button>
+            <button class="btn btn-secondary" id="shuffleCards">Shuffle</button>
+          </div>
+
+          <div class="flashcard" id="flashcard">
+            <div class="no-selection">
+              Select some characters to start practicing!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
