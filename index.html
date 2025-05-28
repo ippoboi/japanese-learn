@@ -3,91 +3,259 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nihon Learning</title>
+    <title>Nihon Learning - Dashboard</title>
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>
-        <img
-          src="logo-japanese.png"
-          alt="Japanese Learning Logo"
-          class="app-logo"
-        />
-        Japanese Alphabet Learning App
-      </h1>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar" id="sidebar">
+        <!-- Navigation will be populated by JavaScript -->
+      </aside>
 
-      <div class="app-layout">
-        <!-- Selection Panel -->
-        <div class="selection-panel">
-          <h2>Select Characters to Practice</h2>
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+          <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        </header>
 
-          <div class="alphabet-selector">
-            <div class="alphabet-tabs">
-              <button class="tab-button active" data-alphabet="hiragana">
-                Hiragana
-              </button>
-              <button class="tab-button" data-alphabet="katakana">
-                Katakana
-              </button>
+        <!-- Content Container -->
+        <div class="content-container" id="contentContainer">
+          <!-- Dashboard Module -->
+          <div class="module-content" id="dashboardModule">
+            <!-- User Profile Section -->
+            <div class="user-dashboard">
+              <div class="user-welcome">
+                <div class="user-avatar-large">
+                  <span class="avatar-text">学</span>
+                </div>
+                <div class="welcome-content">
+                  <h2 class="welcome-title">Welcome back, Learner!</h2>
+                  <p class="welcome-subtitle">
+                    Ready to continue your Japanese journey?
+                  </p>
+                </div>
+              </div>
+
+              <div class="user-quick-stats">
+                <div class="quick-stat">
+                  <div class="stat-icon">🔥</div>
+                  <div class="stat-content">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Day Streak</span>
+                  </div>
+                </div>
+                <div class="quick-stat">
+                  <div class="stat-icon">あ</div>
+                  <div class="stat-content">
+                    <span class="stat-value">23</span>
+                    <span class="stat-label">Characters</span>
+                  </div>
+                </div>
+                <div class="quick-stat">
+                  <div class="stat-icon">📚</div>
+                  <div class="stat-content">
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">Sessions</span>
+                  </div>
+                </div>
+                <div class="quick-stat">
+                  <div class="stat-icon">⭐</div>
+                  <div class="stat-content">
+                    <span class="stat-value">2</span>
+                    <span class="stat-label">Level</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="control-buttons">
-              <button class="btn btn-secondary" id="selectAll">
-                Select All
-              </button>
-              <button class="btn btn-secondary" id="clearAll">Clear All</button>
-              <button class="btn btn-secondary" id="selectBasic">
-                Basic Only
-              </button>
+            <div class="dashboard-grid">
+              <div class="dashboard-card" data-module="alphabet">
+                <div class="card-header">
+                  <span class="card-icon">あ</span>
+                  <h3>Alphabet Learning</h3>
+                </div>
+                <p class="card-description">
+                  Practice Hiragana and Katakana characters with interactive
+                  flashcards.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">92</span>
+                    <span class="stat-label">Characters</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Modes</span>
+                  </div>
+                </div>
+                <button
+                  class="card-button"
+                  onclick="window.location.href='./pages/alphabet.html'"
+                >
+                  Start Learning
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="kanji">
+                <div class="card-header">
+                  <span class="card-icon">漢</span>
+                  <h3>Kanji Practice</h3>
+                </div>
+                <p class="card-description">
+                  Learn essential Kanji characters with stroke order and
+                  meanings.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="vocabulary">
+                <div class="card-header">
+                  <span class="card-icon">📚</span>
+                  <h3>Vocabulary</h3>
+                </div>
+                <p class="card-description">
+                  Expand your vocabulary with themed word collections and games.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="grammar">
+                <div class="card-header">
+                  <span class="card-icon">文</span>
+                  <h3>Grammar</h3>
+                </div>
+                <p class="card-description">
+                  Master Japanese grammar with interactive exercises and
+                  examples.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="listening">
+                <div class="card-header">
+                  <span class="card-icon">🎧</span>
+                  <h3>Listening</h3>
+                </div>
+                <p class="card-description">
+                  Improve your listening skills with audio exercises and
+                  pronunciation.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="reading">
+                <div class="card-header">
+                  <span class="card-icon">📖</span>
+                  <h3>Reading</h3>
+                </div>
+                <p class="card-description">
+                  Practice reading comprehension with stories and articles.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
+
+              <div class="dashboard-card" data-module="exam">
+                <div class="card-header">
+                  <span class="card-icon">🎯</span>
+                  <h3>Mock Exam</h3>
+                </div>
+                <p class="card-description">
+                  Test your knowledge with JLPT N5 practice exams.
+                </p>
+                <div class="card-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">Coming</span>
+                    <span class="stat-label">Soon</span>
+                  </div>
+                </div>
+                <button class="card-button card-button-disabled" disabled>
+                  Coming Soon
+                </button>
+              </div>
             </div>
 
-            <div class="character-grid" id="characterGrid">
-              <!-- Characters will be populated by JavaScript -->
+            <!-- Progress Overview -->
+            <div class="progress-overview">
+              <h2>Your Progress</h2>
+              <div class="progress-cards">
+                <div class="progress-card">
+                  <h4>Study Streak</h4>
+                  <div class="progress-value">5 days</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 71%"></div>
+                  </div>
+                  <span class="progress-text">Keep it up!</span>
+                </div>
+
+                <div class="progress-card">
+                  <h4>Characters Learned</h4>
+                  <div class="progress-value">23/92</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
+                  </div>
+                  <span class="progress-text">25% Complete</span>
+                </div>
+
+                <div class="progress-card">
+                  <h4>Practice Sessions</h4>
+                  <div class="progress-value">12</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                  </div>
+                  <span class="progress-text">This week</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- Practice Panel -->
-        <div class="practice-panel">
-          <h2>Practice Session</h2>
-
-          <div class="stats" id="stats">
-            <div class="stats-item">
-              Selected: <span id="selectedCount">0</span>
-            </div>
-            <div class="stats-item">
-              Practiced: <span id="practicedCount">0</span>
-            </div>
-          </div>
-
-          <div class="alphabet-selector" style="margin-bottom: 1rem">
-            <h3 style="margin-bottom: 0.5rem; font-size: 1rem">
-              Practice Mode
-            </h3>
-            <div class="alphabet-tabs">
-              <button class="tab-button active" data-mode="character">
-                Show Character
-              </button>
-              <button class="tab-button" data-mode="romaji">Show Romaji</button>
-              <button class="tab-button" data-mode="random">Random</button>
-            </div>
-          </div>
-
-          <div class="control-buttons">
-            <button class="btn btn-primary" id="nextCard">Next Card</button>
-            <button class="btn btn-secondary" id="shuffleCards">Shuffle</button>
-          </div>
-
-          <div class="flashcard" id="flashcard">
-            <div class="no-selection">
-              Select some characters to start practicing!
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
 
-    <script type="module" src="./src/main.js"></script>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script type="module" src="./src/dashboard.js"></script>
   </body>
 </html>

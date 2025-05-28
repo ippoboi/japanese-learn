@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihon Learning - Kanji</title>
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar" id="sidebar">
+        <!-- Navigation will be populated by JavaScript -->
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+          <h1 class="page-title" id="pageTitle">Kanji Practice</h1>
+        </header>
+
+        <!-- Content Container -->
+        <div class="content-container" id="contentContainer">
+          <!-- Kanji Module -->
+          <div class="module-content" id="kanjiModule">
+            <div class="coming-soon">
+              <h2>漢 Kanji Module</h2>
+              <p>Kanji learning exercises coming soon!</p>
+              <p>This module will include:</p>
+              <ul style="text-align: left; max-width: 400px; margin: 2rem auto">
+                <li>Essential Kanji characters for JLPT N5</li>
+                <li>Stroke order practice</li>
+                <li>Meaning and reading exercises</li>
+                <li>Context-based learning</li>
+                <li>Progressive difficulty levels</li>
+              </ul>
+              <button
+                class="btn btn-primary"
+                onclick="window.location.href='../index.html'"
+              >
+                Back to Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script type="module" src="../src/module-placeholder.js"></script>
+  </body>
+</html>

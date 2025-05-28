@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihon Learning - Alphabet</title>
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar" id="sidebar">
+        <!-- Navigation will be populated by JavaScript -->
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+          <h1 class="page-title" id="pageTitle">Alphabet Learning</h1>
+        </header>
+
+        <!-- Content Container -->
+        <div class="content-container" id="contentContainer">
+          <!-- Alphabet Module -->
+          <div class="module-content" id="alphabetModule">
+            <div class="app-layout">
+              <!-- Selection Panel -->
+              <div class="selection-panel">
+                <h2>Select Characters to Practice</h2>
+
+                <div class="alphabet-selector">
+                  <div class="control-buttons">
+                    <button class="btn btn-secondary" id="selectAll">
+                      Select All
+                    </button>
+                    <button class="btn btn-secondary" id="clearAll">
+                      Clear All
+                    </button>
+                    <button class="btn btn-secondary" id="selectBasic">
+                      Basic Only
+                    </button>
+                  </div>
+
+                  <div class="character-grid" id="characterGrid">
+                    <!-- Characters will be populated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Practice Panel -->
+              <div class="practice-panel">
+                <h2>Practice Session</h2>
+
+                <div class="stats" id="stats">
+                  <div class="stats-item">
+                    Selected: <span id="selectedCount">0</span>
+                  </div>
+                  <div class="stats-item">
+                    Practiced: <span id="practicedCount">0</span>
+                  </div>
+                </div>
+
+                <div class="practice-controls">
+                  <div class="practice-mode-group">
+                    <label for="practiceMode" class="practice-mode-label"
+                      >Practice Mode</label
+                    >
+                    <select class="practice-mode-dropdown" id="practiceMode">
+                      <option value="character">Show Character</option>
+                      <option value="romaji">Show Romaji</option>
+                      <option value="random">Random</option>
+                    </select>
+                  </div>
+
+                  <div class="action-buttons">
+                    <button class="btn btn-primary" id="nextCard">
+                      Next Card
+                    </button>
+                    <button class="btn btn-secondary" id="shuffleCards">
+                      Shuffle
+                    </button>
+                  </div>
+                </div>
+
+                <div class="flashcard" id="flashcard">
+                  <div class="no-selection">
+                    Select some characters to start practicing!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script type="module" src="../src/alphabet.js"></script>
+  </body>
+</html>

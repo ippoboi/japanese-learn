@@ -4,20 +4,21 @@ import { Flashcard } from "./components/Flashcard.js";
 import { Navigation } from "./components/Navigation.js";
 import {
   getElementById,
-  querySelectorAll,
   addEventListener,
-  toggleClass,
   addClass,
   removeClass,
 } from "./utils/dom.js";
 import { shuffleArray } from "./utils/helpers.js";
 
-class JapaneseApp {
+class AlphabetApp {
   constructor() {
     this.currentAlphabet = "hiragana";
     this.practicedCount = 0;
     this.currentSection = "alphabet";
     this.currentSubsection = "hiragana";
+
+    // Check URL parameters for alphabet type
+    this.checkUrlParameters();
 
     // Initialize DOM elements
     this.initializeElements();
@@ -28,16 +29,28 @@ class JapaneseApp {
       (section, subsection) => this.handleNavigation(section, subsection)
     );
 
-    // Initialize components (only for alphabet module initially)
+    // Initialize alphabet components
     this.initializeAlphabetModule();
 
-    // Setup event listeners for alphabet module
-    this.setupAlphabetEventListeners();
+    // Setup event listeners
+    this.setupEventListeners();
 
     // Initial render
     this.renderCharacterGrid();
     this.updateStats();
     this.updatePageTitle();
+
+    // Set navigation to reflect current alphabet
+    this.navigation.setActiveSection("alphabet", this.currentAlphabet);
+  }
+
+  checkUrlParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const alphabetParam = urlParams.get("alphabet");
+    if (alphabetParam === "hiragana" || alphabetParam === "katakana") {
+      this.currentAlphabet = alphabetParam;
+      this.currentSubsection = alphabetParam;
+    }
   }
 
   initializeElements() {
@@ -46,16 +59,7 @@ class JapaneseApp {
       sidebar: getElementById("sidebar"),
       pageTitle: getElementById("pageTitle"),
       contentContainer: getElementById("contentContainer"),
-
-      // Module containers
       alphabetModule: getElementById("alphabetModule"),
-      dashboardModule: getElementById("dashboardModule"),
-      kanjiModule: getElementById("kanjiModule"),
-      vocabularyModule: getElementById("vocabularyModule"),
-      grammarModule: getElementById("grammarModule"),
-      listeningModule: getElementById("listeningModule"),
-      readingModule: getElementById("readingModule"),
-      examModule: getElementById("examModule"),
 
       // Alphabet module elements
       characterGrid: getElementById("characterGrid"),
@@ -72,7 +76,7 @@ class JapaneseApp {
   }
 
   initializeAlphabetModule() {
-    // Only initialize if alphabet elements exist
+    // Initialize character grid and flashcard components
     if (this.elements.characterGrid && this.elements.flashcard) {
       this.characterGrid = new CharacterGrid(
         this.elements.characterGrid,
@@ -87,10 +91,7 @@ class JapaneseApp {
     return this.currentAlphabet === "hiragana" ? hiraganaData : katakanaData;
   }
 
-  setupAlphabetEventListeners() {
-    // Only setup if elements exist
-    if (!this.elements.characterGrid) return;
-
+  setupEventListeners() {
     // Practice mode dropdown
     if (this.elements.practiceModeDropdown) {
       addEventListener(this.elements.practiceModeDropdown, "change", (e) =>
@@ -139,93 +140,60 @@ class JapaneseApp {
   handleNavigation(section, subsection) {
     console.log("Navigating to:", section, subsection);
 
-    // Update current section and subsection
-    this.currentSection = section;
-    this.currentSubsection = subsection || section;
-
-    // Update page title
-    this.updatePageTitle();
-
-    // Hide all modules
-    this.hideAllModules();
-
-    // Show the appropriate module
-    this.showModule(section, subsection);
-
-    // Handle alphabet subsection navigation
-    if (
-      section === "alphabet" &&
-      (subsection === "hiragana" || subsection === "katakana")
-    ) {
-      this.currentAlphabet = subsection;
-      this.switchAlphabet(subsection);
-    }
-  }
-
-  hideAllModules() {
-    Object.keys(this.elements).forEach((key) => {
-      if (key.endsWith("Module")) {
-        addClass(this.elements[key], "hidden");
-      }
-    });
-  }
-
-  showModule(section, subsection) {
-    let moduleToShow;
-
-    // Map sections to modules
+    // Handle navigation to different pages/sections
     switch (section) {
-      case "alphabet":
-        moduleToShow = this.elements.alphabetModule;
-        break;
       case "dashboard":
-        moduleToShow = this.elements.dashboardModule;
+        window.location.href = "../index.html";
+        break;
+      case "alphabet":
+        if (subsection === "hiragana" || subsection === "katakana") {
+          this.currentAlphabet = subsection;
+          this.currentSubsection = subsection;
+          this.switchAlphabet(subsection);
+        } else if (subsection === "alphabet-quiz") {
+          // TODO: Navigate to quiz mode when implemented
+          console.log("Quiz mode coming soon");
+        }
         break;
       case "kanji":
-        moduleToShow = this.elements.kanjiModule;
+        // TODO: Navigate to kanji page when implemented
+        console.log("Kanji module coming soon");
         break;
       case "vocabulary":
-        moduleToShow = this.elements.vocabularyModule;
+        // TODO: Navigate to vocabulary page when implemented
+        console.log("Vocabulary module coming soon");
         break;
       case "grammar":
-        moduleToShow = this.elements.grammarModule;
+        // TODO: Navigate to grammar page when implemented
+        console.log("Grammar module coming soon");
         break;
       case "listening":
-        moduleToShow = this.elements.listeningModule;
+        // TODO: Navigate to listening page when implemented
+        console.log("Listening module coming soon");
         break;
       case "reading":
-        moduleToShow = this.elements.readingModule;
+        // TODO: Navigate to reading page when implemented
+        console.log("Reading module coming soon");
         break;
       case "exam":
-        moduleToShow = this.elements.examModule;
+        // TODO: Navigate to exam page when implemented
+        console.log("Exam module coming soon");
         break;
       default:
-        moduleToShow = this.elements.alphabetModule;
-    }
-
-    if (moduleToShow) {
-      removeClass(moduleToShow, "hidden");
+        console.log("Unknown section:", section);
     }
   }
 
   updatePageTitle() {
-    const titles = {
-      alphabet: "Alphabet Learning",
-      dashboard: "Dashboard",
-      kanji: "Kanji Practice",
-      vocabulary: "Vocabulary",
-      grammar: "Grammar",
-      listening: "Listening",
-      reading: "Reading",
-      exam: "Mock Exam",
-    };
-
-    const title = titles[this.currentSection] || "Japanese Learning";
-    this.elements.pageTitle.textContent = title;
+    const alphabetName =
+      this.currentAlphabet.charAt(0).toUpperCase() +
+      this.currentAlphabet.slice(1);
+    this.elements.pageTitle.textContent = `${alphabetName} Learning`;
   }
 
   switchAlphabet(alphabet) {
     this.currentAlphabet = alphabet;
+    this.currentSubsection = alphabet;
 
     // Clear selections and render new grid
     if (this.characterGrid) {
@@ -237,8 +205,15 @@ class JapaneseApp {
       this.flashcard.reset();
     }
 
+    // Update page title
+    this.updatePageTitle();
+
     // Update navigation to reflect alphabet change
     this.navigation.setActiveSection("alphabet", alphabet);
+
+    // Update URL without page reload
+    const newUrl = `${window.location.pathname}?alphabet=${alphabet}`;
+    window.history.pushState({ alphabet }, "", newUrl);
   }
 
   switchPracticeMode(mode) {
@@ -309,7 +284,7 @@ class JapaneseApp {
   }
 }
 
-// Initialize the app when DOM is loaded
+// Initialize the alphabet app when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  new JapaneseApp();
+  new AlphabetApp();
 });
