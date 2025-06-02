@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
   // Build optimizations
@@ -11,6 +12,11 @@ export default defineConfig({
 
     // Optimize chunks
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        kanji: resolve(__dirname, "pages/kanji.html"),
+        alphabet: resolve(__dirname, "pages/alphabet.html"),
+      },
       output: {
         manualChunks: {
           // Separate vendor libraries if any are added later

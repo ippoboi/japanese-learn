@@ -2,7 +2,5 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200 
+# Remove the SPA redirect since this is a multi-page application
+# Each page will be served directly from the dist folder 
